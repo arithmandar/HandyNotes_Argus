@@ -53,6 +53,7 @@ local function work_out_texture(point)
 	if (point.ramp) then icon_key = "ramp" end
 	if (point.rare) then icon_key = "rare" end
 	if (point.treasure) then icon_key = "treasure" end
+	if (point.felbloom) then icon_key = "greenButton" end
 	
 	if (icon_key and private.constants.icon_texture[icon_key]) then
 		return private.constants.icon_texture[icon_key]

@@ -157,3 +157,25 @@ for k, v in pairs(DB.entrances) do
 	DB.points[mapFile(1135)][k]["entrance"] = true
 end
 ]]
+
+-- /////////////////////////////////
+-- Felbloom
+-- /////////////////////////////////
+DB.felbloom = {}
+DB.felbloom.Krokuun = {
+	[56365786] = {  },
+}
+for k, v in pairs(DB.felbloom.Krokuun) do
+	DB.points[mapFile(1135)][k] = v
+	DB.points[mapFile(1135)][k]["felbloom"] = true
+	DB.points[mapFile(1135)][k]["label"] = L["Felbloom"]
+end
+
+DB.felbloom.AntoranWastes = {
+	[69013346] = {},
+}
+for k, v in pairs(DB.felbloom.AntoranWastes) do
+	DB.points[mapFile(1171)][k] = v
+	DB.points[mapFile(1171)][k]["felbloom"] = true
+	DB.points[mapFile(1171)][k]["label"] = L["Felbloom"]
+end
