@@ -65,7 +65,20 @@ DB.points = {
 -- /////////////////////////////////
 DB.treasures = {}
 DB.treasures.Krokuun = {
-
+	[55947421] = { label = L["Precious Augari Keepsakes"], object = 277344, },
+	[75186978] = { label = L["Long-Lost Augari Treasure"], object = 277343, },
+	[57506350] = { },
+	[59267343] = { label = L["Eredar War Supplies"] },
+	-- normal chests
+	[33585432] = {},
+	[29646574] = {},
+	[43275452] = {},
+	[45417236] = {},
+	[46358258] = {},
+	[55175071] = {},
+	[69208359] = {},
+	[72546514] = {},
+	
 }
 for k, v in pairs(DB.treasures.Krokuun) do
 	DB.points[mapFile(1135)][k] = v
@@ -96,7 +109,7 @@ DB.rares.Krokuun = {
 	[54708120] = { npc = 123689, label = L["Talestra the Vile"], },
 	[70108140] = { npc = 125479, label = L["Tar Spitter"], },
 	--[69305940] = { npc = 1, label = L["Tereck the Selector - Entrance"], },
-	[69205940] = { npc = 124804, label = L["Tereck the Selector"], },
+	[69205940] = { npc = 124804, quest = 48664, label = L["Tereck the Selector"], },
 	[60901960] = { npc = 125388, label = L["Vagath the Betrayed"], },
 	[42406990] = { npc = 125820, label = L["Imp Mother Laglath"], },
 }
