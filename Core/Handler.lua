@@ -70,7 +70,7 @@ local get_point_info = function(point)
 	if point then
 		local label = point.label or UNKNOWN
 		if (point.treasure) then 
-			if not point.label then point.label = L["Veiled Wyrmtongue Chest"] end
+			if not point.label then point.label = L["Treasure Chest"] end
 			if not point.scale then point.scale = 1.0 end
 			if not point.alpha then point.alpha = 0.5 end
 		end

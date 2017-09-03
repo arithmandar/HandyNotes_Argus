@@ -61,15 +61,23 @@ DB.points = {
 }
 
 -- /////////////////////////////////
--- Veiled Wyrmtongue Chest
+-- Treasure Chest
 -- /////////////////////////////////
-DB.treasures = {
+DB.treasures = {}
+DB.treasures.Krokuun = {
 
 }
-
-for k, v in pairs(DB.treasures) do
+for k, v in pairs(DB.treasures.Krokuun) do
 	DB.points[mapFile(1135)][k] = v
 	DB.points[mapFile(1135)][k]["treasure"] = true
+end
+
+DB.treasures.AntoranWastes = {
+	[69013346] = {},
+}
+for k, v in pairs(DB.treasures.AntoranWastes) do
+	DB.points[mapFile(1171)][k] = v
+	DB.points[mapFile(1171)][k]["treasure"] = true
 end
 
 -- /////////////////////////////////

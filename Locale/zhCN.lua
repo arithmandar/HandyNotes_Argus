@@ -9,9 +9,8 @@ if L then
 -- //////////////////////////
 -- Addon
 -- //////////////////////////
-L["HandyNotes - Broken Shore"] = "HandyNotes - 破碎海滩"
-L["Broken Shore"] = "破碎海滩"
-L["Shows the POIs in Broken Shore"] = "显示破碎海滩的 POI 位置"
+L["HandyNotes - Broken Shore"] = "HandyNotes - 阿古斯"
+L["Shows the POIs in Broken Shore"] = "显示阿古斯的 POI 位置"
 
 -- //////////////////////////
 -- Configs
@@ -27,12 +26,8 @@ L["The alpha transparency of the icons"] = "图示的透明度"
 L["What to display"] = "哪些要被呈现"
 L["These settings control what type of icons to be displayed."] = "以下的设定控制了哪些类型的节点要被显示。"
 L["Show the entrance of specific cave or the entrance to special location."] = "显示特定洞穴的入口节点，或是会将你带去特殊位置的入口位置。"
-L["Ramp"] = "斜坡"
-L["Show ramp to the higher ground. This could be useful before you can fly!"] = "显示通往高地的斜坡节点。这在您可以飞行之前应该相当有用！"
 L["Rare mobs"] = "稀有怪"
 L["Show rare mobs' location even if any of them has not yet spawned."] = "显示稀有菁英怪的节点，即便他们还没重生。"
-L["Wyrmtongue Chest"] = "虫舌魔宝箱"
-L["Show possible spawning location of Veiled Wyrmtongue Chest."] = "显示「隐密的虫舌魔宝箱」可能的重生点。"
 L["Others"] = "其他"
 L["Show all the other misc nodes."] = "显示所有其他杂项节点。"
 -- AddOn Settings
@@ -49,13 +44,6 @@ L["Show all nodes that you manually hid by right-clicking on them and choosing \
 -- //////////////////////////
 -- Common
 -- //////////////////////////
-L["Portal to %s"] = "到%s的传送门"
-L["Portal"] = "传送门"
-L["Entrance"] = "入口"
-L["Entrance of %s"] = "%s的入口"
-L["Entrance to %s"] = "通往%s的入口"
-L["Ramp to %s"] = "通往%s的斜坡"
-L["Inside %s"] = "在%s里面"
 
 -- //////////////////////////
 -- Others

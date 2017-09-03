@@ -9,9 +9,8 @@ if L then
 -- //////////////////////////
 -- Addon
 -- //////////////////////////
-L["HandyNotes - Broken Shore"] = "HandyNotes - 破碎海岸"
-L["Broken Shore"] = "破碎海岸"
-L["Shows the POIs in Broken Shore"] = "顯示破碎海岸的 POI 位置"
+L["HandyNotes - Broken Shore"] = "HandyNotes - 阿古斯"
+L["Shows the POIs in Broken Shore"] = "顯示阿古斯的 POI 位置"
 
 -- //////////////////////////
 -- Configs
@@ -27,19 +26,8 @@ L["The alpha transparency of the icons"] = "圖示的透明度"
 L["What to display"] = "哪些要被呈現"
 L["These settings control what type of icons to be displayed."] = "以下的設定控制了哪些類型的節點要被顯示。"
 L["Show the entrance of specific cave or the entrance to special location."] = "顯示特定洞穴的入口節點，或是會將你帶去特殊位置的入口位置。"
-L["Ramp"] = "斜坡"
-L["Show ramp to the higher ground. This could be useful before you can fly!"] = "顯示通往高地的斜坡節點。這在您可以飛行之前應該相當有用！"
 L["Rare mobs"] = "稀有怪"
 L["Show rare mobs' location even if any of them has not yet spawned."] = "顯示稀有菁英怪的節點，即便他們還沒重生。"
-L["Wyrmtongue Chest"] = "蟲舌魔寶箱"
-L["Show possible spawning location of Veiled Wyrmtongue Chest."] = "顯示「隱密的蟲舌魔寶箱」可能的重生點。"
-L["Ancient Shrine"] = "上古聖壇"
-L["Show Ancient Shrine's locations."] = "顯示上古聖壇的節點位置。"
-L["Smoldering Infernal Core"] = "悶燃煉獄火之核"
-L["Show Smoldering Infernal Core's locations."] = "顯示悶燃煉獄火之核的節點位置。"
-L["Show Master Pet Tamer's location."] = "顯示大師級馴獸師的位置。"
-L["Unstable Nether Portal"] = "不穩定的虛空傳送門"
-L["Show Unstable Nether Portal's location."] = "顯示不穩定的虛空傳送門位置。"
 L["Others"] = "其他"
 L["Show all the other misc nodes."] = "顯示所有其他雜項節點。"
 -- AddOn Settings
