@@ -1,0 +1,15 @@
+package-as: HandyNotes_Argus
+
+manual-changelog:
+    filename: Docs/ChangeLog.txt
+    markup-type: plain
+    
+enable-nolib-creation: yes
+
+externals:
+    Libs/LibBabble-SubZone-3.0: 
+        url: https://repos.wowace.com/wow/libbabble-subzone-3-0/trunk
+    Libs/LibUIDropDownMenu: 
+        url: https://repos.wowace.com/wow/libuidropdownmenu/trunk/LibUIDropDownMenu
+
+

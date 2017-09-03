@@ -1,0 +1,9 @@
+﻿-- $Id: deDE.lua 52 2017-05-14 13:29:33Z arith $
+
+local L = LibStub("AceLocale-3.0"):NewLocale("HandyNotes_Argus", "deDE", false)
+
+if not L then return end
+
+if L then
+--@localization(locale="deDE", format="lua_additive_table", handle-subnamespaces="none", handle-unlocalized="ignore", namespace="")@
+end
