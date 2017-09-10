@@ -87,6 +87,73 @@ end
 
 DB.treasures.AntoranWastes = {
 	[69013346] = {},
+	[71195442] = { label=L["Legion War Supplies"] },
+	[72185677] = { label=L["Legion War Supplies"] },
+	[76695809] = { label=L["Legion War Supplies"] },
+	[75605266] = { label=L["Timeworn Fel Chest"] },
+	
+	[65903980] = { label=L["Ancient Legion War Cache"] },
+	[52202720] = { label=L["Fel-Bound Chest"] },
+	[58805920] = { label=L["Forgotten Legion Supplies"] },
+	[49005930] = { label=L["Legion Treasure Hoard"] },
+
+	[58704330] = { label=L["Legion War Supplies"] },
+	[60204360] = { label=L["Legion War Supplies"] },
+	[60604090] = { label=L["Legion War Supplies"] },
+	[60404690] = { label=L["Legion War Supplies"] },
+	[62104580] = { label=L["Legion War Supplies"] },
+	[64204230] = { label=L["Legion War Supplies"] },
+	[64604010] = { label=L["Legion War Supplies"] },
+	[64204710] = { label=L["Legion War Supplies"] },
+	[62905000] = { label=L["Legion War Supplies"] },
+	[64305030] = { label=L["Legion War Supplies"] },
+	[65205170] = { label=L["Legion War Supplies"] },
+	[65504090] = { label=L["Legion War Supplies"] },
+
+	[71105450] = { label=L["Legion War Supplies"] },
+	[69805520] = { label=L["Legion War Supplies"] },
+	[68005060] = { label=L["Legion War Supplies"] },
+	[67404780] = { label=L["Legion War Supplies"] },
+	[66604670] = { label=L["Legion War Supplies"] },
+	[65304950] = { label=L["Legion War Supplies"] },
+	[65105060] = { label=L["Legion War Supplies"] },
+	[65105500] = { label=L["Legion War Supplies"] },
+	[63505620] = { label=L["Legion War Supplies"] },
+	[63105750] = { label=L["Legion War Supplies"] },
+	[64105860] = { label=L["Legion War Supplies"] },
+	
+	[59601390] = { label=L["Legion War Supplies"] },
+	[59301750] = { label=L["Legion War Supplies"] },
+	[55901400] = { label=L["Legion War Supplies"] },
+	[55901720] = { label=L["Legion War Supplies"] },
+	[55502050] = { label=L["Legion War Supplies"] },
+	[56002660] = { label=L["Legion War Supplies"] },
+	[54202790] = { label=L["Legion War Supplies"] },
+	[51502600] = { label=L["Legion War Supplies"] },
+	
+	[72205680] = { label=L["Legion War Supplies"] },
+	[76505660] = { label=L["Legion War Supplies"] },
+	[78005610] = { label=L["Legion War Supplies"] },
+	[76605810] = { label=L["Legion War Supplies"] },
+	[77205890] = { label=L["Legion War Supplies"] },
+	[80506160] = { label=L["Legion War Supplies"] },
+	[82606510] = { label=L["Legion War Supplies"] },
+	[82506750] = { label=L["Legion War Supplies"] },
+	[81306860] = { label=L["Legion War Supplies"] },
+	[77207510] = { label=L["Legion War Supplies"] },
+	[72607270] = { label=L["Legion War Supplies"] },
+	[73406860] = { label=L["Legion War Supplies"] },
+	[76506480] = { label=L["Legion War Supplies"] },
+	[77306410] = { label=L["Legion War Supplies"] },
+	
+	[65502850] = { label=L["Legion War Supplies"] },
+	[63703650] = { label=L["Legion War Supplies"] },
+	[66703640] = { label=L["Legion War Supplies"] },
+	[68903350] = { label=L["Legion War Supplies"] },
+	[68004020] = { label=L["Legion War Supplies"] },
+	[69503950] = { label=L["Legion War Supplies"] },
+	[72504210] = { label=L["Legion War Supplies"] },
+	[73504670] = { label=L["Legion War Supplies"] },
 }
 for k, v in pairs(DB.treasures.AntoranWastes) do
 	DB.points[mapFile(1171)][k] = v
@@ -119,26 +186,26 @@ for k, v in pairs(DB.rares.Krokuun) do
 end
 -- Antoran Wastes
 DB.rares.AntoranWastes = {
-	[73507200] = { npc = 127090, quest = 48832, label = L["Admiral Rel'var"], },
-	[74905700] = { npc = 127096, quest = 48837, label = L["All-Seer Xanarian"], },
-	[61703690] = { npc = 122958, quest = 47561, label = L["Blistermaw"], },
-	[61402100] = { npc = 127376, quest = 48867, label = L["Chief Alchemist Munculus"], },
-	[80506280] = { npc = 127084, quest = 48831, label = L["Commander Texlaz"], }, -- portal position
-	[55704590] = { npc = 122999, quest = 47566, label = L["Gar'zoth"], },
-	[63102520] = { npc = 127288, quest = 48835, label = L["Houndmaster Kerrax"], }, -- Entrance
-	[61104570] = { npc = 126946, quest = 48830, label = L["Inquisitor Vethroz"], }, --Path Start
-	[62305350] = { npc = 126254, quest = 48828, label = L["Lieutenant Xakaar"], },
-	[57403290] = { npc = 122947, quest = 47552, label = L["Mistress Il'thendra"], }, -- Inside Building
-	[65602660] = { npc = 127705, quest = 48777, label = L["Mother Rosula"], }, -- Same as Puscilla
-	[65602660] = { npc = 126040, quest = 48467, label = L["Puscilla"], }, -- Cave Entrance
-	[54703910] = { npc = 127581, quest = 48870, label = L["The Many-Faced Devourer"], }, -- Spot to Summon
-	[64304820] = { npc = 126208, quest = 48827, label = L["Varga"], }, -- Cave Entrance
-	[66005410] = { npc = 126115, quest = 48466, label = L["Ven'orn"], }, -- Cave Entrance
-	[55702190] = { npc = 127300, quest = 48866, label = L["Void Warden Valsuran"], },
-	[52903620] = { npc = 126199, quest = 48465, label = L["Vrax'thul"], },
-	[52902940] = { npc = 127291, quest = 48836, label = L["Watcher Aival"], },
-	[50905530] = { npc = 127118, quest = 48834, label = L["Worldsplitter Skuul"], },
-	[61406510] = { npc = 126338, quest = 48829, label = L["Wrath-Lord Yarez"], },}
+	[73507200] = { npc = 127090, label = L["Admiral Rel'var"], },
+	[74905700] = { npc = 127096, label = L["All-Seer Xanarian"], },
+	[61703690] = { npc = 122958, label = L["Blistermaw"], },
+	[61402100] = { npc = 127376, label = L["Chief Alchemist Munculus"], },
+	[80506280] = { npc = 127084, label = L["Commander Texlaz"], }, -- portal position
+	[55704590] = { npc = 122999, label = L["Gar'zoth"], },
+	[63102520] = { npc = 127288, label = L["Houndmaster Kerrax"], }, -- Entrance
+	[61104570] = { npc = 126946, label = L["Inquisitor Vethroz"], }, --Path Start
+	[62305350] = { npc = 126254, label = L["Lieutenant Xakaar"], },
+	[57403290] = { npc = 122947, label = L["Mistress Il'thendra"], }, -- Inside Building
+	[65602660] = { npc = 127705, label = L["Mother Rosula"], }, -- Same as Puscilla
+	[65602660] = { npc = 126040, label = L["Puscilla"], }, -- Cave Entrance
+	[54703910] = { npc = 127581, label = L["The Many-Faced Devourer"], }, -- Spot to Summon
+	[64304820] = { npc = 126208, label = L["Varga"], }, -- Cave Entrance
+	[66005410] = { npc = 126115, quest = 48811, label = L["Ven'orn"], }, -- Cave Entrance
+	[55702190] = { npc = 127300, label = L["Void Warden Valsuran"], },
+	[52903620] = { npc = 126199, label = L["Vrax'thul"], },
+	[52902940] = { npc = 127291, label = L["Watcher Aival"], },
+	[50905530] = { npc = 127118, label = L["Worldsplitter Skuul"], },
+	[61406510] = { npc = 126338, label = L["Wrath-Lord Yarez"], },}
 for k, v in pairs(DB.rares.AntoranWastes) do
 	DB.points[mapFile(1171)][k] = v
 	DB.points[mapFile(1171)][k]["rare"] = true

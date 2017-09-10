@@ -29,8 +29,8 @@
 #@end-debug@
 ## Author: arith
 ## Version: @project-version@
-## RequiredDeps: HandyNotes
-## OptionalDeps: LibBabble-SubZone-3.0, LibUIDropDownMenu
+## RequiredDeps: HandyNotes, LibBabble-SubZone-3.0, LibUIDropDownMenu
+## OptionalDeps: 
 ## DefaultState: enabled
 ## SavedVariables: HandyNotes_ArgusDB
 ## X-Date: @project-date-iso@

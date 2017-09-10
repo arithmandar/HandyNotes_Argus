@@ -3,6 +3,10 @@ $Id: ChangeLog.txt 79 2017-08-31 14:53:46Z arith $
 Revision History:
 =================
 
+* v0.02 (Sep. 10, 2017)
+-----------------------
+- Added more treasure chests' location in Antoran Wastes
+
 * v0.01 (Sep. 03, 2017)
 -----------------------
 - Initial version which support WoW 7.3.0
