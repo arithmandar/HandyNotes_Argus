@@ -3,6 +3,10 @@ $Id: ChangeLog.txt 79 2017-08-31 14:53:46Z arith $
 Revision History:
 =================
 
+* v0.04 (Sep. 10, 2017)
+-----------------------
+- Fixed ToC libraries loading
+
 * v0.03 (Sep. 10, 2017)
 -----------------------
 - Added more treasure chests' location in Krokuun
