@@ -51,9 +51,12 @@ DB.points = {
 	--]]
 	-- Krokuun 
 	[mapFile(1135)] = { 
+		[63118106] = { portal=true, label=format(L["Portal to %s"], BZ["The Vindicaar"]), },
+		[62348230] = { portal=true, label=format(L["Portal to %s"], BZ["Dalaran"]), },
 	},
 	-- Mac'Aree
 	[mapFile(1170)] = { 
+		[55468299] = { portal=true, label=format(L["Portal to %s"], BZ["The Vindicaar"]), },
 	},
 	-- Antoran Wastes
 	[mapFile(1171)] = { 
@@ -147,7 +150,7 @@ DB.treasures.Krokuun = {
 	[52003680] = { label=L["Eredar War Supplies"] },
 	[51603580] = { label=L["Eredar War Supplies"] },
 	[49803670] = { label=L["Eredar War Supplies"] },
-	[46303630] = { label=L["Eredar War Supplies"] },
+	[46223621] = { label=L["Eredar War Supplies"] },
 	[47702890] = { label=L["Eredar War Supplies"] },
 	[48703100] = { label=L["Eredar War Supplies"] },
 	[48403350] = { label=L["Eredar War Supplies"] },
@@ -170,7 +173,7 @@ DB.treasures.Krokuun = {
 	[37106410] = { label=L["Eredar War Supplies"] },
 	[34606300] = { label=L["Eredar War Supplies"] },
 	[40606070] = { label=L["Eredar War Supplies"] },
-	[41305830] = { label=L["Eredar War Supplies"] },
+	[41385831] = { label=L["Eredar War Supplies"] },
 	[40505550] = { label=L["Eredar War Supplies"] },
 	[38905910] = { label=L["Eredar War Supplies"] },
 	[38705720] = { label=L["Eredar War Supplies"] },
@@ -286,6 +289,15 @@ for k, v in pairs(DB.treasures.AntoranWastes) do
 	DB.points[mapFile(1171)][k]["treasure"] = true
 end
 
+DB.treasures.MacAree = {
+	[35303588] = { label=L["Void-Seeped Cache"] },
+	[32912386] = { label=L["Void-Seeped Cache"] },
+}
+for k, v in pairs(DB.treasures.MacAree) do
+	DB.points[mapFile(1170)][k] = v
+	DB.points[mapFile(1170)][k]["treasure"] = true
+end
+
 -- /////////////////////////////////
 -- rare mobs
 -- /////////////////////////////////
@@ -336,6 +348,16 @@ for k, v in pairs(DB.rares.AntoranWastes) do
 	DB.points[mapFile(1171)][k] = v
 	DB.points[mapFile(1171)][k]["rare"] = true
 end
+-- Mac'Aree
+DB.rares.MacAree = {
+	[62695006] = { npc=126900, quest=48718, label=L["Instructor Tarahna"], },
+	[33754831] = { npc=126867, quest=48705, label=L["Venomtail Skyfin"], },
+	[41331224] = { npc=126864, quest=48702, label=L["Feasel the Muffin Thief"], },
+}
+for k, v in pairs(DB.rares.MacAree) do
+	DB.points[mapFile(1170)][k] = v
+	DB.points[mapFile(1170)][k]["rare"] = true
+end
 
 -- /////////////////////////////////
 -- Entrance
@@ -374,6 +396,10 @@ for k, v in pairs(DB.felbloom.AntoranWastes) do
 end
 
 -- Fallen Soldier, Blessing if the Righteous
--- [32847339]
--- [33846858]
--- [38646658]
+--[[
+	[32847339] = {},
+	[33846858] = {},
+	[38646658] = {},
+	[40247046] = {},
+	[36376909] = {},
+]]

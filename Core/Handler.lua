@@ -54,6 +54,7 @@ local function work_out_texture(point)
 	if (point.rare) then icon_key = "rare" end
 	if (point.treasure) then icon_key = "treasure" end
 	if (point.felbloom) then icon_key = "greenButton" end
+	if (point.portal and not point.icon) then icon_key = "portal" end
 	
 	if (icon_key and private.constants.icon_texture[icon_key]) then
 		return private.constants.icon_texture[icon_key]
@@ -61,7 +62,11 @@ local function work_out_texture(point)
 		return private.constants.icon_texture[point.type]
 	-- use the icon specified in point data
 	elseif (point.icon) then
-		return point.icon
+		if (private.constants.icon_texture[point.icon]) then
+			return private.constants.icon_texture[point.icon]
+		else
+			return point.icon
+		end
 	else
 		return private.constants.defaultIcon
 	end
@@ -194,38 +199,7 @@ local function addAllTreasureToWayPoint(button, mapFile)
 		for k, v in pairs(private.DB.treasures) do
 			local x, y = HandyNotes:getXY(k)
 			TomTom:AddMFWaypoint(mapId, nil, x, y, {
-				title = L["Veiled Wyrmtongue Chest"],
-				persistent = nil,
-				minimap = true,
-				world = true
-			})
-		end
-	end
-end
-
-local function addAllShrineToWayPoint(button, mapFile)
-	if TomTom then
-		local mapId = HandyNotes:GetMapFiletoMapID(mapFile)
-		local spellName = GetSpellInfo(239933)
-		for k, v in pairs(private.DB.shrines) do
-			local x, y = HandyNotes:getXY(k)
-			TomTom:AddMFWaypoint(mapId, nil, x, y, {
-				title = spellName,
-				persistent = nil,
-				minimap = true,
-				world = true
-			})
-		end
-	end
-end
-
-local function addAllNetherPortalToWayPoint(button, mapFile)
-	if TomTom then
-		local mapId = HandyNotes:GetMapFiletoMapID(mapFile)
-		for k, v in pairs(private.DB.netherPortals) do
-			local x, y = HandyNotes:getXY(k)
-			TomTom:AddMFWaypoint(mapId, nil, x, y, {
-				title = L["Unstable Nether Portal"],
+				title = L["Treasure Chest"],
 				persistent = nil,
 				minimap = true,
 				world = true
