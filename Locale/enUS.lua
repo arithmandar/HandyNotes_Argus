@@ -49,7 +49,18 @@ L["Show node's coordinate information."] = "Show node's coordinate information."
 -- //////////////////////////
 -- Others
 -- //////////////////////////
-
+L["Precious Augari Keepsakes"] = "Precious Augari Keepsakes"
+L["Long-Lost Augari Treasure"] = "Long-Lost Augari Treasure"
+L["Eredar War Supplies"] = "Eredar War Supplies"
+L["Legion War Supplies"] = "Legion War Supplies"
+L["Timeworn Fel Chest"] = "Timeworn Fel Chest"
+L["Ancient Legion War Cache"] = "Ancient Legion War Cache"
+L["Fel-Bound Chest"] = "Fel-Bound Chest"
+L["Forgotten Legion Supplies"] = "Forgotten Legion Supplies"
+L["Legion Treasure Hoard"] = "Legion Treasure Hoard"
+L["Void-Seeped Cache"] = "Void-Seeped Cache"
+L["Ancient Eredar Cache"] = "Ancient Eredar Cache"
+L["Felbloom"] = "Felbloom"
 --@end-do-not-package@
 --@localization(locale="enUS", format="lua_additive_table", handle-subnamespaces="none", handle-unlocalized="ignore", namespace="")@
 end
