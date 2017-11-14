@@ -203,7 +203,7 @@ DB.treasures.Krokuun = {
 	[45805850] = { label=L["Eredar War Supplies"] },
 	[43505520] = { label=L["Eredar War Supplies"] },
 	[43505080] = { label=L["Eredar War Supplies"] },
-	[46504910] = { label=L["Eredar War Supplies"] },
+	[46404910] = { label=L["Eredar War Supplies"] },
 	[46304650] = { label=L["Eredar War Supplies"] },
 	[44904350] = { label=L["Eredar War Supplies"] },
 	[46104070] = { label=L["Eredar War Supplies"] },
