@@ -3,11 +3,17 @@ $Id: ChangeLog.txt 79 2017-08-31 14:53:46Z arith $
 Revision History:
 =================
 
+* v0.06 (Dec. 26, 2017)
+-----------------------
+- Translation update:
+  - Spanish (Caiel)
+  - Russian (Hubbotu)
+
 * v0.05 (Nov. 14, 2017)
 -----------------------
 - Added Ancient Eredar Cache in Mac'Aree
 - Translation update:
-  - French (MrPalamen
+  - French (MrPalamen)
   - Russian (BLizzatron)
   - German (pas06)
   - Korean (yuk6196)
