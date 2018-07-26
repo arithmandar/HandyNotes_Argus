@@ -113,5 +113,5 @@ constants.events = {
 	-- such as a bridge or building and onto terrain or another object.
 	"NEW_WMO_CHUNK",
 	"ENCOUNTER_LOOT_RECEIVED",
-	"CLOSE_WORLD_MAP",
+--	"CLOSE_WORLD_MAP",
 }

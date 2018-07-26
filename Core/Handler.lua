@@ -417,9 +417,9 @@ end
 function addon:ENCOUNTER_LOOT_RECEIVED()
 	addon:Refresh()
 end
-
+--[[
 function addon:CLOSE_WORLD_MAP()
 	closeAllDropdowns()
 end
-
+]]
 -- //////////////////////////////////////////////////////////////////////////

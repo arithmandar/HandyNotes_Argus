@@ -1,4 +1,4 @@
-﻿## Interface: 70300
+﻿## Interface: 80000
 #@non-debug@
 ## Title: @localization(locale="enUS", key="Title", namespace="ToC")@
 ## Title-deDE: @localization(locale="deDE", key="Title", namespace="ToC")@
@@ -29,9 +29,7 @@
 #@end-debug@
 ## Author: arith
 ## Version: @project-version@
-## RequiredDeps: HandyNotes
-## OptionalDeps: LibBabble-SubZone-3.0, LibUIDropDownMenu
-## OptionalDeps: 
+## RequiredDeps: HandyNotes, LibBabble-SubZone-3.0, !LibUIDropDownMenu
 ## DefaultState: enabled
 ## SavedVariables: HandyNotes_ArgusDB
 ## X-Date: @project-date-iso@
