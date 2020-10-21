@@ -13,8 +13,9 @@ externals:
         url: https://repos.wowace.com/wow/libuidropdownmenu/trunk/LibUIDropDownMenu
 
 move-folders:
-    HandyNotes_Argus/Libs: HandyNotes_BrokenShore/Libs-dev
-    HandyNotes_Argus/Libs-release: HandyNotes_BrokenShore/Libs
+    HandyNotes_Argus/Libs: HandyNotes_Argus/Libs-dev
+    HandyNotes_Argus/Libs-release: HandyNotes_Argus/Libs
+
 ignore:
     - Images/PSD
     - Libs-dev
