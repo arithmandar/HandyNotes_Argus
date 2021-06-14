@@ -3,6 +3,10 @@ $Id: ChangeLog.txt 79 2017-08-31 14:53:46Z arith $
 Revision History:
 =================
 
+* v0.22 (Jun. 14, 2021)
+-----------------------
+- Library update - LibCurrency
+
 * v0.21 (May 19, 2021)
 -----------------------
 - ToC update to support WoW 9.0.5
