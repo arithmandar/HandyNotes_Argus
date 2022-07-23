@@ -1,4 +1,4 @@
-$Id: ChangeLog.txt 79 2017-08-31 14:53:46Z arith $
+$Id$
 
 Revision History:
 =================
