@@ -43,7 +43,7 @@ constants.defaults = {
 		show_entrance = true,
 		show_ramp = true,
 		show_rare = true,
-		show_others = true, 
+		show_others = true,
 		show_note = true,
 		show_treasure = true,
 		show_shrine = true,
@@ -68,7 +68,7 @@ constants.icon_texture = {
 	flight 		= "Interface\\MINIMAP\\TRACKING\\FlightMaster",
 	entrance 	= "Interface\\MINIMAP\\Suramar_Door_Icon",
 	ramp 		= "Interface\\MINIMAP\\MiniMap-VignetteArrow",
-	greenButton 	= { 
+	greenButton 	= {
 		icon = OBJECTICONS,
 		tCoordLeft = 0.5, tCoordRight = 0.625, tCoordTop = 0, tCoordBottom = 0.125,
 	},
@@ -108,10 +108,12 @@ constants.defaultIcon = constants.icon_texture["entrance"]
 constants.events = {
 	"ZONE_CHANGED",
 	"ZONE_CHANGED_INDOORS",
-	-- Fires when stepping off of a world map object. 
-	-- Appears to fire whenever the player has moved off of a structure 
+	-- Fires when stepping off of a world map object.
+	-- Appears to fire whenever the player has moved off of a structure
 	-- such as a bridge or building and onto terrain or another object.
 	"NEW_WMO_CHUNK",
 	"ENCOUNTER_LOOT_RECEIVED",
+	-- Hidden tracking quests for Argus supply caches update when loot closes.
+	"LOOT_CLOSED",
 --	"CLOSE_WORLD_MAP",
 }
