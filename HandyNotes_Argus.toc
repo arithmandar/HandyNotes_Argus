@@ -1,4 +1,4 @@
-﻿## Interface: 100007
+﻿## Interface: 120100
 #@non-debug@
 ## Title: @localization(locale="enUS", key="Title", namespace="ToC")@
 ## Title-deDE: @localization(locale="deDE", key="Title", namespace="ToC")@
@@ -27,14 +27,15 @@
 ## Title: HandyNotes - Argus
 ## Notes: Shows the POIs in Argus
 #@end-debug@
-## Author: arith
+## Author: arith, chowis
 ## Version: @project-version@
 ## RequiredDeps: HandyNotes
-## OptionalDeps: LibBabble-SubZone-3.0, !LibUIDropDownMenu
+## OptionalDeps: LibBabble-SubZone-3.0
 ## DefaultState: enabled
 ## SavedVariables: HandyNotes_ArgusDB
 ## X-Date: @project-date-iso@
 ## X-License: GPLv2
+## X-Credits: Original addon and data by arith/arithmandar
 ## X-Category: Map
 
 Libs\Libs.xml

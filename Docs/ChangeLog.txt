@@ -1,7 +1,15 @@
-$Id$
+$Id: ChangeLog.txt 71 2023-03-20 15:17:12Z arithmandar $
 
 Revision History:
 =================
+
+* v0.44 (Sep. 19, 2026)
+-----------------------
+- Updated for WoW Retail 12.1.
+- Migrated removed spell, tooltip, and context-menu APIs to their current Blizzard replacements.
+- Fixed bulk TomTom treasure waypoints.
+- Added daily supply-cache completion tracking and immediate pin refresh after looting.
+- Rebuilt the daily-cache data: 100 Krokuun, 75 Antoran Wastes, and 164 Eredath spawn points.
 
 * v0.39 (Mar. 20, 2023)
 -----------------------
@@ -73,7 +81,7 @@ Revision History:
 - Toc update to support WoW 9.0.1
 - Updated deprecated function call
   - WorldMapTooltip
-  - IsQuestFlaggedCompleted  --> C_QuestLog.IsQuestFlaggedCompleted 
+  - IsQuestFlaggedCompleted  --> C_QuestLog.IsQuestFlaggedCompleted
 
 * v0.16 (Jul. 26, 2020)
 -----------------------

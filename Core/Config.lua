@@ -113,8 +113,8 @@ config.options = {
 				},
 				hide_completed = {
 					type = "toggle",
-					name = L["Hide looted mobs"],
-					desc = L["Hide the rare elite mobs which have been killed and looted today."],
+					name = L["Hide completed rares and treasures"],
+					desc = L["Hide rares and daily treasure groups which have already been looted today."],
 					order = 15,
 				},
 				show_coords = {

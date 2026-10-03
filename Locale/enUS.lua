@@ -63,4 +63,6 @@ L["Ancient Eredar Cache"] = "Ancient Eredar Cache"
 L["Felbloom"] = "Felbloom"
 --@end-do-not-package@
 --@localization(locale="enUS", format="lua_additive_table", handle-subnamespaces="none", handle-unlocalized="ignore", namespace="")@
+L["Hide completed rares and treasures"] = "Hide completed rares and treasures"
+L["Hide rares and daily treasure groups which have already been looted today."] = "Hide rares and daily treasure groups which have already been looted today."
 end
