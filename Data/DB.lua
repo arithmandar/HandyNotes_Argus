@@ -4,12 +4,14 @@
 -----------------------------------------------------------------------
 -- Functions
 local _G = getfenv(0)
-local pairs = _G.pairs;
+local pairs = _G.pairs
+local string = _G.string
+local format = string.format
 -- Libraries
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
-local FOLDER_NAME, private = ...
+local _, private = ...
 local LibStub = _G.LibStub
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name);
 
@@ -511,7 +513,7 @@ DB.rares.AntoranWastes = {
 	[62305350] = { npc=126254, quest=48813, label=L["Lieutenant Xakaar"], },
 	[57403290] = { npc=122947, quest=49240, label=L["Mistress Il'thendra"], }, -- Inside Building
 	[65602660] = { npc=127705, quest=48970, label=L["Mother Rosula"], }, -- Same as Puscilla
-	[65602660] = { npc=126040, quest=48809, label=L["Puscilla"], }, -- Cave Entrance
+	[65702670] = { npc=126040, quest=48809, label=L["Puscilla"], }, -- Cave Entrance
 	[54703910] = { npc=127581, quest=48966, label=L["The Many-Faced Devourer"], }, -- Spot to Summon
 	[64304820] = { npc=126208, quest=48812, label=L["Varga"], }, -- Cave Entrance
 	[66005410] = { npc=126115, quest=48811, label=L["Ven'orn"], }, -- Cave Entrance
@@ -519,7 +521,8 @@ DB.rares.AntoranWastes = {
 	[52903620] = { npc=126199, quest=48810, label=L["Vrax'thul"], },
 	[52902940] = { npc=127291, quest=48822, label=L["Watcher Aival"], },
 	[50905530] = { npc=127118, quest=48820, label=L["Worldsplitter Skuul"], },
-	[61406510] = { npc=126338, quest=48814, label=L["Wrath-Lord Yarez"], },}
+	[61406510] = { npc=126338, quest=48814, label=L["Wrath-Lord Yarez"], },
+}
 for k, v in pairs(DB.rares.AntoranWastes) do
 	DB.points[885][k] = v
 	DB.points[885][k]["rare"] = true

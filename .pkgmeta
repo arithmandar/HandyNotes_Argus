@@ -6,14 +6,14 @@ manual-changelog:
 
 enable-nolib-creation: no
 
-externals:
-    Libs-release/LibBabble-SubZone-3.0:
-        url: https://repos.wowace.com/wow/libbabble-subzone-3-0/trunk
+# configs for WowInterface
+wowi-archive-previous: yes
+wowi-create-changelog: no
 
-move-folders:
-    HandyNotes_Argus/Libs: HandyNotes_Argus/Libs-dev
-    HandyNotes_Argus/Libs-release: HandyNotes_Argus/Libs
+externals:
+    Libs/LibBabble-SubZone-3.0:
+        url: https://repos.curseforge.com/wow/libbabble-subzone-3-0/trunk
 
 ignore:
     - Images/PSD
-    - Libs-dev
+

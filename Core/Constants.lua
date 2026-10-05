@@ -1,4 +1,3 @@
--- $Id: Constants.lua 70 2017-07-02 14:53:21Z arith $
 -----------------------------------------------------------------------
 -- Upvalued Lua API.
 -----------------------------------------------------------------------
@@ -8,7 +7,7 @@ local _G = getfenv(0)
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
-local FOLDER_NAME, private = ...
+local _, private = ...
 private.addon_name = "HandyNotes_Argus"
 
 local LibStub = _G.LibStub
@@ -29,7 +28,7 @@ local function GetLocaleLibBabble(typ)
 end
 local BZ = GetLocaleLibBabble("LibBabble-SubZone-3.0")
 private.descName = L["HandyNotes - Argus"]
-private.description = L["Shows the POIs in Argus"]
+private.description = L["Shows notable points of interest in Argus."]
 private.pluginName = BZ["Argus"]
 
 local constants = {}
