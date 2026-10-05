@@ -8,11 +8,14 @@ local _G = getfenv(0)
 local string = _G.string
 local format, gsub = string.format, string.gsub
 local next, wipe, pairs, select, type = next, wipe, pairs, select, type
-local GameTooltip, GetSpellInfo, CreateFrame, UnitClass = _G.GameTooltip, _G.GetSpellInfo, _G.CreateFrame, _G.UnitClass
---local UIDropDownMenu_CreateInfo, CloseDropDownMenus, UIDropDownMenu_AddButton, ToggleDropDownMenu = L_UIDropDownMenu_CreateInfo, L_CloseDropDownMenus, L_UIDropDownMenu_AddButton, L_ToggleDropDownMenu
-
-local WorldMapTooltip = GameTooltip
+local GameTooltip, UnitClass = _G.GameTooltip, _G.UnitClass
+local issecretvalue = _G.issecretvalue
 local IsQuestFlaggedCompleted = C_QuestLog.IsQuestFlaggedCompleted
+
+local function GetSpellName(spellID)
+	local spellInfo = C_Spell.GetSpellInfo(spellID)
+	return spellInfo and spellInfo.name
+end
 
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
@@ -23,8 +26,6 @@ local LibStub = _G.LibStub
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name)
 local LH = LibStub("AceLocale-3.0"):GetLocale("HandyNotes", false)
 local AceDB = LibStub("AceDB-3.0")
--- UIDropDownMenu
-local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
 
 local HandyNotes = LibStub("AceAddon-3.0"):GetAddon("HandyNotes")
 local addon = LibStub("AceAddon-3.0"):NewAddon(private.addon_name, "AceEvent-3.0")
@@ -41,27 +42,26 @@ _G.HandyNotes_Argus = addon
 local profile
 
 -- //////////////////////////////////////////////////////////////////////////
--- get creature's name from server
-local mcache_tooltip = CreateFrame("GameTooltip", private.addon_name.."_mcacheToolTip", UIParent, "GameTooltipTemplate")
-local creature_cache
-
--- activation code
-local function getCreatureNamebyID(id)
-	mcache_tooltip:SetOwner(UIParent, "ANCHOR_NONE")
-	mcache_tooltip:SetHyperlink(("unit:Creature-0-0-0-0-%d"):format(id))
-	creature_cache = _G[private.addon_name.."_mcacheToolTipTextLeft1"]:GetText()
+-- Resolve a localized creature name without relying on a hidden tooltip frame.
+local function getCreatureNameByID(id)
+	local tooltipData = C_TooltipInfo.GetHyperlink(("unit:Creature-0-0-0-0-%d"):format(id))
+	local firstLine = tooltipData and tooltipData.lines and tooltipData.lines[1]
+	local name = firstLine and firstLine.leftText
+	if name and (not issecretvalue or not issecretvalue(name)) then
+		return name
+	end
 end
 -- //////////////////////////////////////////////////////////////////////////
 local function work_out_texture(point)
 	local icon_key
-	
+
 	if (point.entrance) then icon_key = "entrance" end
 	if (point.ramp) then icon_key = "ramp" end
 	if (point.rare) then icon_key = "rare" end
 	if (point.treasure) then icon_key = "treasure" end
 	if (point.felbloom) then icon_key = "greenButton" end
 	if (point.portal and not point.icon) then icon_key = "portal" end
-	
+
 	if (icon_key and private.constants.icon_texture[icon_key]) then
 		return private.constants.icon_texture[icon_key]
 	elseif (point.type and private.constants.icon_texture[point.type]) then
@@ -80,8 +80,7 @@ end
 
 local get_point_info = function(point)
 	if point then
-		local label = point.label or UNKNOWN
-		if (point.treasure) then 
+		if (point.treasure) then
 			if not point.label then point.label = L["Treasure Chest"] end
 			if not point.scale then point.scale = 1.0 end
 			if not point.alpha then point.alpha = 0.5 end
@@ -93,12 +92,13 @@ local get_point_info = function(point)
 			if not point.scale then point.scale = 0.8 end
 			if not point.alpha then point.alpha = 0.8 end
 		end
-		if (point.netherPortal) then 
+		if (point.netherPortal) then
 			if not point.label then point.label = L["Unstable Nether Portal"] end
 			if not point.scale then point.scale = 1.4 end
 			if not point.alpha then point.alpha = 0.6 end
 		end
 
+		local label = point.label or UNKNOWN
 		local icon = work_out_texture(point)
 
 		return label, icon, point.scale, point.alpha
@@ -113,16 +113,13 @@ local function handle_tooltip(tooltip, point, coord)
 	if point then
 		if (point.label) then
 			if (point.npc and profile.query_server) then
-				--tooltip:SetHyperlink(("unit:Creature-0-0-0-0-%d"):format(point.npc))
-				getCreatureNamebyID(point.npc)
-				tooltip:AddLine(creature_cache or point.label)
-				creature_cache = nil
+				tooltip:AddLine(getCreatureNameByID(point.npc) or point.label)
 			else
 				tooltip:AddLine(point.label)
 			end
 		end
 		if (point.spell) then
-			local spellName = GetSpellInfo(point.spell)
+			local spellName = GetSpellName(point.spell)
 			if (spellName) then
 				tooltip:AddLine(spellName, 1, 1, 1, true)
 			end
@@ -134,7 +131,7 @@ local function handle_tooltip(tooltip, point, coord)
 			local x, y = HandyNotes:getXY(coord)
 			tooltip:AddLine(format("%.2f, %.2f", x*100, y*100), 1, 1, 1, true)
 		end
---@debug@
+--[===[@debug@
 		if (point.quest) then
 			if (IsQuestFlaggedCompleted(point.quest)) then
 				tooltip:AddDoubleLine(L["QuestID"], point.quest or UNKNOWN, 0.5, 0.5, 1, 1, 0.5, 1)
@@ -142,7 +139,7 @@ local function handle_tooltip(tooltip, point, coord)
 				tooltip:AddDoubleLine(L["QuestID"], point.quest or UNKNOWN, 0.5, 0.5, 1, 0.5, 0.5, 1)
 			end
 		end
---@end-debug@
+--@end-debug@]===]
 	else
 		tooltip:SetText(UNKNOWN)
 	end
@@ -155,10 +152,9 @@ end
 
 -- //////////////////////////////////////////////////////////////////////////
 local PluginHandler = {}
-local info = {}
 
 function PluginHandler:OnEnter(uMapID, coord)
-	local tooltip = self:GetParent() == WorldMapFrame:GetCanvas() and WorldMapTooltip or GameTooltip
+	local tooltip = GameTooltip
 	if ( self:GetCenter() > UIParent:GetCenter() ) then -- compare X coordinate
 		tooltip:SetOwner(self, "ANCHOR_LEFT")
 	else
@@ -168,20 +164,12 @@ function PluginHandler:OnEnter(uMapID, coord)
 end
 
 function PluginHandler:OnLeave(uMapID, coord)
-	if self:GetParent() == WorldMapFrame:GetCanvas() then
-		WorldMapTooltip:Hide()
-	else
-		GameTooltip:Hide()
-	end
+	GameTooltip:Hide()
 end
 
 local function hideNode(button, uMapID, coord)
 	private.hidden[uMapID][coord] = true
 	addon:Refresh()
-end
-
-local function closeAllDropdowns()
-	LibDD:CloseDropDownMenus(1)
 end
 
 local function addTomTomWaypoint(button, uMapID, coord)
@@ -197,121 +185,41 @@ local function addTomTomWaypoint(button, uMapID, coord)
 end
 
 local function addAllTreasureToWayPoint(button, uMapID)
-	if TomTom then
-		for k, v in pairs(private.DB.treasures) do
-			local x, y = HandyNotes:getXY(k)
-			TomTom:AddWaypoint(uMapID, x, y, {
-				title = L["Veiled Wyrmtongue Chest"],
-				persistent = nil,
-				minimap = true,
-				world = true
-			})
+	local points = private.DB.points[uMapID]
+	if TomTom and points then
+		for coord, point in pairs(points) do
+			if point.treasure and private:ShouldShow(coord, point, uMapID) then
+				local x, y = HandyNotes:getXY(coord)
+				TomTom:AddWaypoint(uMapID, x, y, {
+					title = point.label or L["Treasure Chest"],
+					persistent = nil,
+					minimap = true,
+					world = true
+				})
+			end
 		end
 	end
 end
 
-local function addAllShrineToWayPoint(button, uMapID)
-	if TomTom then
-		local spellName = GetSpellInfo(239933)
-		for k, v in pairs(private.DB.shrines) do
-			local x, y = HandyNotes:getXY(k)
-			TomTom:AddWaypoint(uMapID, x, y, {
-				title = spellName,
-				persistent = nil,
-				minimap = true,
-				world = true
-			})
-		end
-	end
-end
-
-local function addAllNetherPortalToWayPoint(button, uMapID)
-	if TomTom then
-		for k, v in pairs(private.DB.netherPortals) do
-			local x, y = HandyNotes:getXY(k)
-			TomTom:AddWaypoint(uMapID, x, y, {
-				title = L["Unstable Nether Portal"],
-				persistent = nil,
-				minimap = true,
-				world = true
-			})
-		end
-	end
-end
-
-do
-	local currentMapID = nil
-	local currentCoord = nil
-	local function generateMenu(button, level)
-		if (not level) then return end
-		if (level == 1) then
-			-- Create the title of the menu
-			info = LibDD:UIDropDownMenu_CreateInfo()
-			info.isTitle 		= true
-			info.text 		= "HandyNotes - " ..addon.pluginName
-			info.notCheckable 	= true
-			LibDD:UIDropDownMenu_AddButton(info, level)
+function PluginHandler:OnClick(button, down, uMapID, coord)
+	if (button == "RightButton" and not down) then
+		MenuUtil.CreateContextMenu(self, function(owner, rootDescription)
+			rootDescription:CreateTitle("HandyNotes - " .. addon.pluginName)
 
 			if TomTom then
-				-- Waypoint menu item
-				info = LibDD:UIDropDownMenu_CreateInfo()
-				info.text = LH["Add this location to TomTom waypoints"]
-				info.notCheckable = true
-				info.func = addTomTomWaypoint
-				info.arg1 = currentMapID
-				info.arg2 = currentCoord
-				LibDD:UIDropDownMenu_AddButton(info, level)
-
-				info = LibDD:UIDropDownMenu_CreateInfo()
-				info.text = L["Add all treasure nodes to TomTom waypoints"]
-				info.notCheckable = true
-				info.func = addAllTreasureToWayPoint
-				info.arg1 = currentMapID
-				LibDD:UIDropDownMenu_AddButton(info, level)
-
-				info = LibDD:UIDropDownMenu_CreateInfo()
-				info.text = L["Add all Ancient Shrine nodes to TomTom waypoints"]
-				info.notCheckable = true
-				info.func = addAllShrineToWayPoint
-				info.arg1 = currentMapID
-				LibDD:UIDropDownMenu_AddButton(info, level)
-
-				info = LibDD:UIDropDownMenu_CreateInfo()
-				info.text = L["Add all Unstable Nether Portal nodes to TomTom waypoints"]
-				info.notCheckable = true
-				info.func = addAllNetherPortalToWayPoint
-				info.arg1 = currentMapID
-				LibDD:UIDropDownMenu_AddButton(info, level)
+				rootDescription:CreateButton(LH["Add this location to TomTom waypoints"], function()
+					addTomTomWaypoint(nil, uMapID, coord)
+				end)
+				rootDescription:CreateButton(L["Add all treasure nodes to TomTom waypoints"], function()
+					addAllTreasureToWayPoint(nil, uMapID)
+				end)
 			end
 
-			-- Hide menu item
-			info = LibDD:UIDropDownMenu_CreateInfo()
-			info.text		= HIDE 
-			info.notCheckable 	= true
-			info.func		= hideNode
-			info.arg1		= currentMapID
-			info.arg2		= currentCoord
-			LibDD:UIDropDownMenu_AddButton(info, level)
-
-			-- Close menu item
-			info = LibDD:UIDropDownMenu_CreateInfo()
-			info.text		= CLOSE
-			info.func		= closeAllDropdowns
-			info.notCheckable 	= true
-			LibDD:UIDropDownMenu_AddButton(info, level)
-		end
-	end
-	--local HL_Dropdown = CreateFrame("Frame", private.addon_name.."DropdownMenu")
-	local HL_Dropdown = LibDD:Create_UIDropDownMenu(private.addon_name.."DropdownMenu")
-	HL_Dropdown.displayMode = "MENU"
-	HL_Dropdown.initialize = generateMenu
-
-	function PluginHandler:OnClick(button, down, uMapID, coord)
-		if (button == "RightButton" and not down) then
-			currentMapID = uMapID
-			currentCoord = coord
-			LibDD:ToggleDropDownMenu(1, nil, HL_Dropdown, self, 0, 0)
-		end
+			rootDescription:CreateDivider()
+			rootDescription:CreateButton(HIDE, function()
+				hideNode(nil, uMapID, coord)
+			end)
+		end)
 	end
 end
 
@@ -427,6 +335,12 @@ do
 		if (point.rare and point.quest and profile.hide_completed and IsQuestFlaggedCompleted(point.quest)) then
 			return false
 		end
+		-- Argus supply caches are grouped by hidden daily quests. Every possible
+		-- spawn point in a group shares the same quest, so looting one cache hides
+		-- the whole group until Blizzard resets the flag the following day.
+		if (point.treasure and point.quest and profile.hide_completed and IsQuestFlaggedCompleted(point.quest)) then
+			return false
+		end
 		-- this will check if any node is for specific class
 		if (point.class and point.class ~= select(2, UnitClass("player"))) then
 			return false
@@ -438,7 +352,7 @@ end
 -- //////////////////////////////////////////////////////////////////////////
 function addon:OnInitialize()
 	self.db = AceDB:New(private.addon_name.."DB", private.constants.defaults)
-	
+
 	profile = self.db.profile
 	private.db = profile
 	private.hidden = self.db.char.hidden
@@ -470,6 +384,10 @@ function addon:NEW_WMO_CHUNK()
 end
 
 function addon:ENCOUNTER_LOOT_RECEIVED()
+	addon:Refresh()
+end
+
+function addon:LOOT_CLOSED()
 	addon:Refresh()
 end
 --[[
