@@ -1,4 +1,3 @@
--- $Id: Handler.lua 70 2017-07-02 14:53:21Z arith $
 -----------------------------------------------------------------------
 -- Upvalued Lua API.
 -----------------------------------------------------------------------
@@ -6,16 +5,17 @@
 local _G = getfenv(0)
 -- Libraries
 local string = _G.string
-local format, gsub = string.format, string.gsub
-local next, wipe, pairs, select, type = next, wipe, pairs, select, type
+local format = string.format
+local next, pairs, select = next, pairs, select
 local GameTooltip, UnitClass = _G.GameTooltip, _G.UnitClass
 local issecretvalue = _G.issecretvalue
+local C_QuestLog = _G.C_QuestLog
 local IsQuestFlaggedCompleted = C_QuestLog.IsQuestFlaggedCompleted
-
-local function GetSpellName(spellID)
-	local spellInfo = C_Spell.GetSpellInfo(spellID)
-	return spellInfo and spellInfo.name
-end
+local GetTitleForQuestID = C_QuestLog.GetTitleForQuestID
+local C_Spell = _G.C_Spell
+local GetSpellInfo = C_Spell.GetSpellInfo
+local C_TooltipInfo = _G.C_TooltipInfo
+local IsIndoors, IsOutdoors = _G.IsIndoors, _G.IsOutdoors
 
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
@@ -51,6 +51,17 @@ local function getCreatureNameByID(id)
 		return name
 	end
 end
+
+local function getSpellName(spellID)
+	local spellInfo = GetSpellInfo(spellID)
+	return spellInfo and spellInfo.name
+end
+
+local function getQuestTitlebyID(id)
+	local questTitle = GetTitleForQuestID(id)
+	return questTitle
+end
+
 -- //////////////////////////////////////////////////////////////////////////
 local function work_out_texture(point)
 	local icon_key
@@ -111,6 +122,19 @@ end
 
 local function handle_tooltip(tooltip, point, coord)
 	if point then
+		if (point.quest) then
+			if (profile.query_server) then
+				local questTitle = getQuestTitlebyID(point.quest)
+				if (questTitle) then
+					tooltip:AddLine(QUESTS_COLON..questTitle, 1, 1, 1)
+					tooltip:SetHyperlink(("quest:%d[%%s]"):format(point.quest))
+				end
+			end
+			tooltip:AddDoubleLine(L["QuestID"], point.quest or UNKNOWN, 0.5, 0.5, 1, 0.5, 0.5, 1)
+			if (IsQuestFlaggedCompleted(point.quest)) then
+				tooltip:AddLine(ERR_QUEST_ALREADY_DONE, 0, 1, 0)
+			end
+		end
 		if (point.label) then
 			if (point.npc and profile.query_server) then
 				tooltip:AddLine(getCreatureNameByID(point.npc) or point.label)
@@ -119,7 +143,7 @@ local function handle_tooltip(tooltip, point, coord)
 			end
 		end
 		if (point.spell) then
-			local spellName = GetSpellName(point.spell)
+			local spellName = getSpellName(point.spell)
 			if (spellName) then
 				tooltip:AddLine(spellName, 1, 1, 1, true)
 			end
@@ -131,15 +155,6 @@ local function handle_tooltip(tooltip, point, coord)
 			local x, y = HandyNotes:getXY(coord)
 			tooltip:AddLine(format("%.2f, %.2f", x*100, y*100), 1, 1, 1, true)
 		end
---[===[@debug@
-		if (point.quest) then
-			if (IsQuestFlaggedCompleted(point.quest)) then
-				tooltip:AddDoubleLine(L["QuestID"], point.quest or UNKNOWN, 0.5, 0.5, 1, 1, 0.5, 1)
-			else
-				tooltip:AddDoubleLine(L["QuestID"], point.quest or UNKNOWN, 0.5, 0.5, 1, 0.5, 0.5, 1)
-			end
-		end
---@end-debug@]===]
 	else
 		tooltip:SetText(UNKNOWN)
 	end
@@ -292,6 +307,7 @@ do
 		currentMapID = uMapID
 		return iter, private.DB.points[uMapID], nil
 	end
+
 	function private:ShouldShow(coord, point, currentMapID)
 		if (private.hidden[currentMapID] and private.hidden[currentMapID][coord]) then
 			return false
@@ -362,7 +378,7 @@ function addon:OnInitialize()
 end
 
 function addon:OnEnable()
-	for key, value in pairs( addon.constants.events ) do
+	for _, value in pairs( addon.constants.events ) do
 		self:RegisterEvent( value );
 	end
 end

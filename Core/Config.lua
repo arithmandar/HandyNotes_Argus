@@ -1,15 +1,16 @@
--- $Id: Config.lua 55 2017-05-17 11:57:08Z arith $
 -----------------------------------------------------------------------
 -- Upvalued Lua API.
 -----------------------------------------------------------------------
 -- Functions
 local _G = getfenv(0)
 local pairs = _G.pairs
+local table = _G.table
+local wipe = table.wipe
 -- Libraries
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.
 -- ----------------------------------------------------------------------------
-local FOLDER_NAME, private = ...
+local _, private = ...
 local LibStub = _G.LibStub;
 local addon = LibStub("AceAddon-3.0"):GetAddon(private.addon_name)
 local L = LibStub("AceLocale-3.0"):GetLocale(private.addon_name);
@@ -34,21 +35,21 @@ config.options = {
 			order = 10,
 			args = {
 				desc = {
-					name = L["These settings control the look and feel of the icon."],
+					name = L["These settings control the appearance of the icons."],
 					type = "description",
 					order = 0,
 				},
 				icon_scale = {
 					type = "range",
 					name = L["Icon Scale"],
-					desc = L["The scale of the icons"],
+					desc = L["The scale of the icons."],
 					min = 0.25, max = 2, step = 0.01,
 					order = 20,
 				},
 				icon_alpha = {
 					type = "range",
 					name = L["Icon Alpha"],
-					desc = L["The alpha transparency of the icons"],
+					desc = L["The transparency of the icons."],
 					min = 0, max = 1, step = 0.01,
 					order = 30,
 				},
@@ -61,34 +62,26 @@ config.options = {
 			order = 20,
 			args = {
 				desc = {
-					name = L["These settings control what type of icons to be displayed."],
+					name = L["These settings control which types of icons are displayed on the World Map and Minimap."],
 					type = "description",
 					order = 0,
 				},
 				show_entrance = {
 					type = "toggle",
 					name = L["Entrance"],
-					desc = L["Show the entrance of specific cave or the entrance to special location."],
+					desc = L["Show the entrances to caves and other special locations."],
 					order = 10,
 				},
 				show_rare = {
 					type = "toggle",
 					name = L["Rare mobs"],
-					desc = L["Show rare mobs' location even if any of them has not yet spawned."],
+					desc = L["Show rare creature locations even when they have not spawned yet."],
 					order = 12,
 				},
---[[
-				show_treasure = {
-					type = "toggle",
-					name = L["Wyrmtongue Chest"],
-					desc = L["Show possible spawning location of Veiled Wyrmtongue Chest."],
-					order = 13,
-				},
-]]
 				show_others = {
 					type = "toggle",
 					name = L["Others"],
-					desc = L["Show all the other misc nodes."],
+					desc = L["Show all other miscellaneous nodes."],
 					order = 20,
 				},
 			},
@@ -102,33 +95,33 @@ config.options = {
 				query_server = {
 					type = "toggle",
 					name = L["Query from server"],
-					desc = L["Send query request to server to lookup localized names. May be a little bit slower for the first time lookup but would be very fast once the name is found and cached."],
+					desc = L["Query the server for localized names. The first lookup may be slightly slower, but names are cached for faster future lookups."],
 					order = 10,
 				},
 				show_note = {
 					type = "toggle",
 					name = L["Show note"],
-					desc = L["Show the node's additional notes when it's available."],
+					desc = L["Show additional notes for a node when available."],
 					order = 11,
 				},
 				hide_completed = {
 					type = "toggle",
-					name = L["Hide completed rares and treasures"],
-					desc = L["Hide rares and daily treasure groups which have already been looted today."],
+					name = L["Hide looted mobs"],
+					desc = L["Hide rare elite creatures that have been killed and looted today."],
 					order = 15,
 				},
 				show_coords = {
 					type = "toggle",
-					name = L["Show coordinate"],
-					desc = L["Show node's coordinate information."],
+					name = L["Show coordinates"],
+					desc = L["Show a node's coordinates."],
 					order = 16,
 				},
 				unhide = {
 					type = "execute",
 					name = L["Reset hidden nodes"],
-					desc = L["Show all nodes that you manually hid by right-clicking on them and choosing \"hide\"."],
+					desc = L["Show all nodes that you manually hid by right-clicking them and selecting \"Hide\"."],
 					func = function()
-						for map,coords in pairs(private.hidden) do
+						for _, coords in pairs(private.hidden) do
 							wipe(coords)
 						end
 						addon:Refresh()
