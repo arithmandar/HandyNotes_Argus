@@ -1,0 +1,87 @@
+name: Feature or improvement request
+description: Suggest a feature or improvement for the HandyNotes plugin in this repository.
+title: "[Suggestion]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for sharing your ideas!
+
+        Use this form to suggest a feature or improvement for the HandyNotes plugin maintained in this repository.
+
+        Please search existing issues before submitting.
+        You do not need to provide a technical implementation.
+
+        If existing markers, information, or functionality are incorrect, please use the Bug report form instead.
+
+        For requests specifically about HandyNotes core rather than this plugin, please use the HandyNotes core issue tracker linked in the issue chooser.
+
+        If you are unsure which component would need to change, you may describe your suggestion here.
+
+  - type: dropdown
+    id: suggestion-type
+    attributes:
+      label: Type of suggestion
+      options:
+        - Additional map markers or coverage
+        - Marker visibility, filtering, or customization
+        - Tooltip information
+        - Interaction or navigation
+        - Usability or accessibility
+        - Localization or documentation
+        - Other or not sure
+    validations:
+      required: true
+
+  - type: input
+    id: affected-content
+    attributes:
+      label: Related zone, marker, or feature
+      description: |
+        Identify the relevant zone, map marker, or plugin feature.
+        If the suggestion applies to the entire plugin, enter "General".
+      placeholder: "Zone, marker, or feature name"
+    validations:
+      required: true
+
+  - type: textarea
+    id: need
+    attributes:
+      label: What would this improve?
+      description: |
+        Describe the need, limitation, or use case behind your suggestion.
+        Explain what you are trying to accomplish and who would benefit.
+      placeholder: "When using this plugin, I would like to..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Suggested improvement
+      description: |
+        Describe what you would like to see added or changed.
+        If you do not have a specific solution, describe the outcome you would like instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: game-context
+    attributes:
+      label: Relevant WoW version or game flavor
+      description: |
+        If relevant, specify the game version or release, and any character or progression requirements.
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives or workarounds
+      description: |
+        Describe any existing workarounds or other approaches you have considered.
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: References and additional context
+      description: |
+        Add screenshots, mockups, coordinates, reference links, or examples that help explain the suggestion.

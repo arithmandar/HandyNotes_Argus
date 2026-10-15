@@ -1,4 +1,4 @@
-﻿## Interface: 120100
+﻿## Interface: 120105
 ## Title: HandyNotes - Argus
 ## Notes: Shows notable points of interest in Argus, including rare creature locations and other useful map nodes.
 ## Title-deDE: HandyNotes - Argus
